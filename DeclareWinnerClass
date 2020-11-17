@@ -1,0 +1,120 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Super_Tic_Tac_Toe_New
+{
+    class DeclareWinnerClass
+    {
+
+        static List<string> smallBoardListInOrder = new List<string>();
+        static string[] smallBoardstringArr = new string[9];
+        static string[] printSmallBoardstringArr = new string[9];
+        public void MainCheckWinner(string smallBoardWinner)
+        {
+            
+            smallBoardListInOrder.Add(smallBoardWinner);
+
+            switch (smallBoardWinner.Substring(0, 2))
+            {
+                case "NW":
+                    smallBoardstringArr[0] = smallBoardWinner.Substring(2);
+                    printSmallBoardstringArr[0] = smallBoardWinner.Substring(0, 2);
+                    break;
+                case "NC":
+                    smallBoardstringArr[1] = smallBoardWinner.Substring(2);
+                    printSmallBoardstringArr[1] = smallBoardWinner.Substring(0, 2);
+                    break;
+                case "NE":
+                    smallBoardstringArr[2] = smallBoardWinner.Substring(2);
+                    printSmallBoardstringArr[2] = smallBoardWinner.Substring(0, 2);
+                    break;
+                case "CW":
+                    smallBoardstringArr[3] = smallBoardWinner.Substring(2);
+                    printSmallBoardstringArr[3] = smallBoardWinner.Substring(0, 2);
+                    break;
+                case "CC":
+                    smallBoardstringArr[4] = smallBoardWinner.Substring(2);
+                    printSmallBoardstringArr[4] = smallBoardWinner.Substring(0, 2);
+                    break;
+                case "CE":
+                    smallBoardstringArr[5] = smallBoardWinner.Substring(2);
+                    printSmallBoardstringArr[5] = smallBoardWinner.Substring(0, 2);
+                    break;
+                case "SW":
+                    smallBoardstringArr[6] = smallBoardWinner.Substring(2);
+                    printSmallBoardstringArr[6] = smallBoardWinner.Substring(0, 2);
+                    break;
+                case "SC":
+                    smallBoardstringArr[7] = smallBoardWinner.Substring(2);
+                    printSmallBoardstringArr[7] = smallBoardWinner.Substring(0, 2);
+                    break;
+                case "SE":
+                    smallBoardstringArr[8] = smallBoardWinner;
+                    printSmallBoardstringArr[8] = smallBoardWinner.Substring(0, 2);
+                    break;
+            }
+            
+            FinalCheckIfWinnerHorisontal(smallBoardstringArr, printSmallBoardstringArr, smallBoardListInOrder);
+            FinalCheckIfWinnerVertical(smallBoardstringArr, printSmallBoardstringArr, smallBoardListInOrder);
+            FinalCheckIfWinnerCross(smallBoardstringArr, printSmallBoardstringArr, smallBoardListInOrder);
+        }
+        public void FinalCheckIfWinnerHorisontal(string[] smallBoardstringArr, string[] printSmallBoardstringArr, List<string> smallBoardListInOrder)
+        {
+            
+                for (int i = 0; i < 7; i += 3)
+                {
+                    if ((smallBoardstringArr[i] == "X" && smallBoardstringArr[i + 1] == "X" && smallBoardstringArr[i + 2] == "X") || (smallBoardstringArr[i] == "O" && smallBoardstringArr[i + 1] == "O" && smallBoardstringArr[i + 2] == "O"))
+                    {
+                        PrintOutWinner(smallBoardListInOrder, printSmallBoardstringArr, i);
+                    }
+                }        
+        }
+        public void FinalCheckIfWinnerVertical(string[] smallBoardstringArr, string[] printSmallBoardstringArr, List<string> smallBoardListInOrder)
+        {
+
+            for (int i = 0; i < 3; i += 2)
+            {
+                if ((smallBoardstringArr[i] == "X" && smallBoardstringArr[i + 3] == "X" && smallBoardstringArr[i + 6] == "X") || (smallBoardstringArr[i] == "O" && smallBoardstringArr[i + 3] == "O" && smallBoardstringArr[i + 6] == "O"))
+                {
+                    PrintOutWinner(smallBoardListInOrder, printSmallBoardstringArr, i);
+                }
+            }
+        }
+        public void FinalCheckIfWinnerCross(string[] smallBoardStringArr, string[] printSmallBoardstringArr, List<string> smallBoardListInOrder)
+        {
+            int j = 8;
+            for (int i = 0; i < 3; i += 2)
+            {
+                if ((smallBoardstringArr[i] == "X" && smallBoardstringArr[4] == "X" && smallBoardstringArr[j] == "X") || (smallBoardstringArr[i] == "O" && smallBoardstringArr[4] == "O" && smallBoardstringArr[j] == "O"))         
+                {
+                    PrintOutWinner(smallBoardListInOrder, printSmallBoardstringArr, i);
+                }
+                j -= 2;
+            }
+
+        }
+
+        public void PrintOutWinner(List<string> smallBoardListInOrder,string[] printSmallBoardstringArr, int i)
+        {
+            int x = 0;
+            for (int k = 0; k < smallBoardListInOrder.Count; k++)
+            {
+                for (int n = 0; n < printSmallBoardstringArr.Length; n++)
+                {
+                    if (printSmallBoardstringArr[n] == smallBoardListInOrder[k].Substring(0, 2) && smallBoardListInOrder[k].Substring(2) == smallBoardstringArr[i] && x < 2)
+                    {
+                        Console.Write(smallBoardListInOrder[k].Substring(0, 2) + ", ");
+                        x++;
+                    }
+                    else if (printSmallBoardstringArr[n] == smallBoardListInOrder[k].Substring(0, 2) && smallBoardListInOrder[k].Substring(2) == smallBoardstringArr[i] && x >= 2)
+                    {
+                        Console.Write(smallBoardListInOrder[k].Substring(0, 2));
+                    }
+                   
+                }
+                
+            }
+        }
+    }
+}
