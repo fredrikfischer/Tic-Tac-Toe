@@ -1,0 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Super_Tic_Tac_Toe_New
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+             Input Input = new Input(); 
+             Input.InputMethod();
+
+        }
+    }
+}
