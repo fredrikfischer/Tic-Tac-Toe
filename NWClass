@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Super_Tic_Tac_Toe_New
+{
+    class NWClass
+    {
+        string[] NWstringArr = new string[9];
+        DeclareWinnerClass DeclareWinnerClass = new DeclareWinnerClass();
+        public void NWMethod(string splitList, string XorO)
+        {
+            
+
+            switch (splitList)
+            {
+                case "NW":
+                    NWstringArr[0] = XorO;
+                    break;
+                case "NC":
+                    NWstringArr[1] = XorO;
+                    break;
+                case "NE":
+                    NWstringArr[2] = XorO;
+                    break;
+                case "CW":
+                    NWstringArr[3] = XorO;
+                    break;
+                case "CC":
+                    NWstringArr[4] = XorO;
+                    break;
+                case "CE":
+                    NWstringArr[5] = XorO;
+                    break;
+                case "SW":
+                    NWstringArr[6] = XorO;
+                    break;
+                case "SC":
+                    NWstringArr[7] = XorO;
+                    break;
+                case "SE":
+                    NWstringArr[8] = XorO;
+                    break;
+            }
+
+            
+            NWCheckIfWinnerHorisontal(NWstringArr);
+            NWCheckIfWinnerVertical(NWstringArr);
+            NWCheckIfWinnerCross(NWstringArr);
+        }
+
+        public void NWCheckIfWinnerHorisontal(string[] NWstringArr)
+        {
+
+            for (int i = 0; i < 7; i += 3)
+            {              
+                if ((NWstringArr[i] == "X" && NWstringArr[i+1] == "X" && NWstringArr[i+2] == "X") || (NWstringArr[i] == "O" && NWstringArr[i+1] == "O" && NWstringArr[i+2] == "O"))
+                {
+                    DeclareWinnerClass.MainCheckWinner("NW" + NWstringArr[i]);
+                }      
+            }
+        }
+        public void NWCheckIfWinnerVertical(string[] NWstringArr)
+        {
+
+            for (int i = 0; i < 3; i += 2)
+            {
+                if ((NWstringArr[i] == "X" && NWstringArr[i + 3] == "X" && NWstringArr[i + 6] == "X") || (NWstringArr[i] == "O" && NWstringArr[i + 3] == "O" && NWstringArr[i + 6] == "O"))
+                {                   
+                    DeclareWinnerClass.MainCheckWinner("NW" + NWstringArr[i]);
+                }            
+            }
+        }
+        public void NWCheckIfWinnerCross(string[] NWstringArr)
+        {
+            int j = 8;
+            for (int i = 0; i < 3; i += 2)
+            {                
+                if ((NWstringArr[i] == "X" && NWstringArr[4] == "X" && NWstringArr[j] == "X") || (NWstringArr[0] == "O" && NWstringArr[4] == "O" && NWstringArr[j] == "O"))
+                {
+                    DeclareWinnerClass.MainCheckWinner("NW" + NWstringArr[0]);
+                }
+                j -= 2;
+            }
+        }
+    }
+}
