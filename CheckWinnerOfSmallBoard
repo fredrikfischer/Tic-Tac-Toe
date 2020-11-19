@@ -8,50 +8,60 @@ namespace Super_Tic_Tac_Toe_New
     {
         DeclareWinnerClass DeclareWinnerClass = new DeclareWinnerClass();
         
-        public void MainsmallBoardCheckIfWinner(string whichSmallBoard, string[] smallBoardstringArr)
+        public void MainsmallBoardCheckIfWinner(string whichSmallBoard, string[,] smallBoardstringArr, int tempInt)
         {
-            smallBoardCheckIfWinnerHorisontal(whichSmallBoard, smallBoardstringArr);
-            smallBoardCheckIfWinnerVertical(whichSmallBoard, smallBoardstringArr);
-            smallBoardCheckIfWinnerCross(whichSmallBoard, smallBoardstringArr);
+
+                smallBoardCheckIfWinnerHorisontal(whichSmallBoard, smallBoardstringArr, tempInt);
+                smallBoardCheckIfWinnerVertical(whichSmallBoard, smallBoardstringArr, tempInt);
+                smallBoardCheckIfWinnerCross(whichSmallBoard, smallBoardstringArr, tempInt);
+  
         }
-        public void smallBoardCheckIfWinnerHorisontal(string whichSmallBoard, string[] smallBoardstringArr)
+        private void smallBoardCheckIfWinnerHorisontal(string whichSmallBoard, string[,] smallBoardstringArr, int i)
         {
             
-            for (int i = 0; i < 7; i += 3)
-            {
-                
-                if (smallBoardstringArr[i] == smallBoardstringArr[i + 1] && smallBoardstringArr[i + 1] == smallBoardstringArr[i + 2] && !string.IsNullOrEmpty(smallBoardstringArr[i]))
+            
+                for (int j = 0; j < 7; j += 3)
                 {
                     
-                    DeclareWinnerClass.MainCheckWinner(whichSmallBoard + smallBoardstringArr[i]);
+                    if (smallBoardstringArr[i, j] == smallBoardstringArr[i,j + 1] && smallBoardstringArr[i,j + 1] == smallBoardstringArr[i,j + 2] && !string.IsNullOrEmpty(smallBoardstringArr[i,j]))
+                    {
+                      // Console.WriteLine(whichSmallBoard + smallBoardstringArr[i, j]);
+                      DeclareWinnerClass.MainCheckWinner(whichSmallBoard + smallBoardstringArr[i,j]);
+                    }
                 }
-            }
+            
+           
         }
-        public void smallBoardCheckIfWinnerVertical(string whichSmallBoard, string[] smallBoardstringArr)
+        private void smallBoardCheckIfWinnerVertical(string whichSmallBoard, string[,] smallBoardstringArr, int i)
         {
             
-            for (int i = 0; i < 3; i++)
-            {
-                
-                if (smallBoardstringArr[i] == smallBoardstringArr[i + 3] && smallBoardstringArr[i + 3] == smallBoardstringArr[i + 6] && !string.IsNullOrEmpty(smallBoardstringArr[i]))
+                for (int j = 0; j < 3; j++)
                 {
-                    
-                    DeclareWinnerClass.MainCheckWinner(whichSmallBoard + smallBoardstringArr[i]);
+
+                    if (smallBoardstringArr[i,j] == smallBoardstringArr[i,j + 3] && smallBoardstringArr[i,j + 3] == smallBoardstringArr[i,j + 6] && !string.IsNullOrEmpty(smallBoardstringArr[i,j]))
+                    {
+                        // Console.WriteLine(whichSmallBoard + smallBoardstringArr[i, j]);
+                        DeclareWinnerClass.MainCheckWinner(whichSmallBoard + smallBoardstringArr[i,j]);
+                    }
                 }
-            }
+            
+            
         }
-        public void smallBoardCheckIfWinnerCross(string whichSmallBoard, string[] smallBoardstringArr)
+        private void smallBoardCheckIfWinnerCross(string whichSmallBoard, string[,] smallBoardstringArr, int i)
         {
-            int j = 8;
-            for (int i = 0; i < 3; i += 2)
-            {
-                if (smallBoardstringArr[i] == smallBoardstringArr[4] && smallBoardstringArr[4] == smallBoardstringArr[j] && !string.IsNullOrEmpty(smallBoardstringArr[i]))
+            
+                int k = 8;
+                for (int j = 0; j < 3; j += 2)
                 {
-                    
-                    DeclareWinnerClass.MainCheckWinner(whichSmallBoard + smallBoardstringArr[i]);
+                    if (smallBoardstringArr[i,j] == smallBoardstringArr[i,4] && smallBoardstringArr[i,4] == smallBoardstringArr[i,k] && !string.IsNullOrEmpty(smallBoardstringArr[i,j]))
+                    {
+                        //   Console.WriteLine(whichSmallBoard + smallBoardstringArr[i, j]);
+                        DeclareWinnerClass.MainCheckWinner(whichSmallBoard + smallBoardstringArr[i,j]);
+                    }
+                    k -= 2;
                 }
-                j -= 2;
-            }
+            
+            
         }
     }
 }
