@@ -7,9 +7,9 @@ namespace Super_Tic_Tac_Toe_New
     class DeclareWinnerClass
     {
 
-        static List<string> smallBoardListInOrder = new List<string>();
-        static string[] smallBoardstringArr = new string[9];
-        static string[] printSmallBoardstringArr = new string[9];
+        public List<string> smallBoardListInOrder = new List<string>();
+        public string[] smallBoardstringArr = new string[9];
+        public  string[] printSmallBoardstringArr = new string[9];
         public void MainCheckWinner(string smallBoardWinner)
         {
             
@@ -59,23 +59,23 @@ namespace Super_Tic_Tac_Toe_New
             FinalCheckIfWinnerVertical(smallBoardstringArr, printSmallBoardstringArr, smallBoardListInOrder);
             FinalCheckIfWinnerCross(smallBoardstringArr, printSmallBoardstringArr, smallBoardListInOrder);
         }
-        public void FinalCheckIfWinnerHorisontal(string[] smallBoardstringArr, string[] printSmallBoardstringArr, List<string> smallBoardListInOrder)
+        private void FinalCheckIfWinnerHorisontal(string[] smallBoardstringArr, string[] printSmallBoardstringArr, List<string> smallBoardListInOrder)
         {
             
                 for (int i = 0; i < 7; i += 3)
                 {
-                    if ((smallBoardstringArr[i] == "X" && smallBoardstringArr[i + 1] == "X" && smallBoardstringArr[i + 2] == "X") || (smallBoardstringArr[i] == "O" && smallBoardstringArr[i + 1] == "O" && smallBoardstringArr[i + 2] == "O"))
+                    if (smallBoardstringArr[i] == smallBoardstringArr[i + 1] && smallBoardstringArr[i + 1] == smallBoardstringArr[i + 2] && !string.IsNullOrEmpty(smallBoardstringArr[i]))
                     {
                         PrintOutWinner(smallBoardListInOrder, printSmallBoardstringArr, i);
                     }
                 }        
         }
-        public void FinalCheckIfWinnerVertical(string[] smallBoardstringArr, string[] printSmallBoardstringArr, List<string> smallBoardListInOrder)
+        private void FinalCheckIfWinnerVertical(string[] smallBoardstringArr, string[] printSmallBoardstringArr, List<string> smallBoardListInOrder)
         {
 
-            for (int i = 0; i < 3; i += 2)
+            for (int i = 0; i < 3; i++)
             {
-                if ((smallBoardstringArr[i] == "X" && smallBoardstringArr[i + 3] == "X" && smallBoardstringArr[i + 6] == "X") || (smallBoardstringArr[i] == "O" && smallBoardstringArr[i + 3] == "O" && smallBoardstringArr[i + 6] == "O"))
+                if (smallBoardstringArr[i] == smallBoardstringArr[i + 3] && smallBoardstringArr[i + 3] == smallBoardstringArr[i + 6] && !string.IsNullOrEmpty(smallBoardstringArr[i]))
                 {
                     PrintOutWinner(smallBoardListInOrder, printSmallBoardstringArr, i);
                 }
@@ -86,16 +86,15 @@ namespace Super_Tic_Tac_Toe_New
             int j = 8;
             for (int i = 0; i < 3; i += 2)
             {
-                if ((smallBoardstringArr[i] == "X" && smallBoardstringArr[4] == "X" && smallBoardstringArr[j] == "X") || (smallBoardstringArr[i] == "O" && smallBoardstringArr[4] == "O" && smallBoardstringArr[j] == "O"))         
+                if (smallBoardstringArr[i] == smallBoardstringArr[4] && smallBoardstringArr[4] == smallBoardstringArr[j] && !string.IsNullOrEmpty(smallBoardstringArr[i]))         
                 {
                     PrintOutWinner(smallBoardListInOrder, printSmallBoardstringArr, i);
                 }
                 j -= 2;
             }
-
         }
 
-        public void PrintOutWinner(List<string> smallBoardListInOrder,string[] printSmallBoardstringArr, int i)
+        private void PrintOutWinner(List<string> smallBoardListInOrder,string[] printSmallBoardstringArr, int i)
         {
             int x = 0;
             for (int k = 0; k < smallBoardListInOrder.Count; k++)
@@ -110,10 +109,8 @@ namespace Super_Tic_Tac_Toe_New
                     else if (printSmallBoardstringArr[n] == smallBoardListInOrder[k].Substring(0, 2) && smallBoardListInOrder[k].Substring(2) == smallBoardstringArr[i] && x >= 2)
                     {
                         Console.Write(smallBoardListInOrder[k].Substring(0, 2));
-                    }
-                   
-                }
-                
+                    }                 
+                }              
             }
         }
     }
