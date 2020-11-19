@@ -4,46 +4,57 @@ using System.Text;
 
 namespace Super_Tic_Tac_Toe_New
 {
-    class NWClass
+    
+    class SmallBoardClass
     {
-        string[] NWstringArr = new string[9];
+        string[,] smallBoardStringArr = new string[9, 9];
         DeclareWinnerClass DeclareWinnerClass = new DeclareWinnerClass();
         CheckWInnerOfSmallBoard CheckWInnerOfSmallBoard = new CheckWInnerOfSmallBoard();
-        public void NWMethod(string splitList, string XorO)
+
+        public void smallBoardMethod(string[] splitList, string XorO)
         {
-            
-            switch (splitList)
+            int[] tempArr = new int[splitList.Length];
+
+            for (int i = 0; i < splitList.Length; i++)
             {
-                case "NW":
-                    NWstringArr[0] = XorO;
-                    break;
-                case "NC":
-                    NWstringArr[1] = XorO;
-                    break;
-                case "NE":
-                    NWstringArr[2] = XorO;
-                    break;
-                case "CW":
-                    NWstringArr[3] = XorO;
-                    break;
-                case "CC":
-                    NWstringArr[4] = XorO;
-                    break;
-                case "CE":
-                    NWstringArr[5] = XorO;
-                    break;
-                case "SW":
-                    NWstringArr[6] = XorO;
-                    break;
-                case "SC":
-                    NWstringArr[7] = XorO;
-                    break;
-                case "SE":
-                    NWstringArr[8] = XorO;
-                    break;
+                switch (splitList[i])
+                {
+                    case "NW":
+                        tempArr[i] = 0;
+                        break;
+                    case "NC":
+                        tempArr[i] = 1;
+                        break;
+                    case "NE":
+                        tempArr[i] = 2;
+                        break;
+                    case "CW":
+                        tempArr[i] = 3;
+                        break;
+                    case "CC":
+                        tempArr[i] = 4;
+                        break;
+                    case "CE":
+                        tempArr[i] = 5;
+                        break;
+                    case "SW":
+                        tempArr[i] = 6;
+                        break;
+                    case "SC":
+                        tempArr[i] = 7;
+                        break;
+                    case "SE":
+                        tempArr[i] = 8;
+                        break;
+                }
             }
 
-            CheckWInnerOfSmallBoard.MainsmallBoardCheckIfWinner("NW", NWstringArr);
+            
+                smallBoardStringArr[tempArr[0], tempArr[1]] = XorO;
+                CheckWInnerOfSmallBoard.MainsmallBoardCheckIfWinner(splitList[0], smallBoardStringArr,tempArr[0]);
+
+
+           // Console.WriteLine(smallBoardStringArr[1,1]);
         }
     }
 }
