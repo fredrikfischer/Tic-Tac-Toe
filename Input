@@ -6,20 +6,10 @@ using System.Linq;
 namespace Super_Tic_Tac_Toe_New
 {
     class Input
-    {
-        
-
+    {      
         public void InputMethod()
         {
-            NWClass NWClass = new NWClass();
-            NCClass NCClass = new NCClass();
-            NEClass NEClass = new NEClass();
-            CWClass CWClass = new CWClass();
-            CCClass CCClass = new CCClass();
-            CEClass CEClass = new CEClass();
-            SWClass SWClass = new SWClass();
-            SCClass SCClass = new SCClass();
-            SEClass SEClass = new SEClass();
+            SmallBoardClass SmallBoardClass = new SmallBoardClass();
             string userInput = Console.ReadLine().ToUpper();
             List<string> userInputList = new List<string>();
 
@@ -32,39 +22,7 @@ namespace Super_Tic_Tac_Toe_New
             for (int i = 0; i < userInputList.Count; i++)
             {
                 string[] splitList = userInputList[i].Split('.');
-
-                switch (splitList[0])
-                {
-                    case "NW":
-                        NWClass.NWMethod(splitList[1], XorO);
-                        break;
-                    case "NC":
-                        NCClass.NCMethod(splitList[1], XorO);
-                        break;
-                    case "NE":
-                        NEClass.NEMethod(splitList[1], XorO);
-                        break;
-                    case "CW":
-                        CWClass.CWMethod(splitList[1], XorO);
-                        break;
-                    case "CC":
-                        CCClass.CCMethod(splitList[1], XorO);
-                        break;
-                    case "CE":
-                        CEClass.CEMethod(splitList[1], XorO);
-                        break;
-                    case "SW":
-                        SWClass.SWMethod(splitList[1], XorO);
-                        break;
-                    case "SC":
-                        SCClass.SCMethod(splitList[1], XorO);
-                        break;
-                    case "SE":
-                        SEClass.SEMethod(splitList[1], XorO);
-                        break;
-                }
-
-
+                    SmallBoardClass.smallBoardMethod(splitList, XorO);         
                 if(XorO == "X")
                 {
                     XorO = "O";
@@ -73,13 +31,8 @@ namespace Super_Tic_Tac_Toe_New
                 {
                     XorO = "X";
                 }
-
-
-            }
-            
-             
+            }          
         }
-
         public void CheckAndRemoveDuplicates(List<string> userInputList)
         {
             for (int i = 0; i < userInputList.Count; i++)
@@ -93,6 +46,5 @@ namespace Super_Tic_Tac_Toe_New
                 }
             }
         }
-
     }
 }
